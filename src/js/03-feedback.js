@@ -10,6 +10,7 @@ form.addEventListener('submit', onFormSubmit);
 
 let dataForm = JSON.parse(localStorage.getItem(LOCAL_KEY)) || {};
 const { email, message } = form.elements;
+reloadPage();
 
 
 function onInputData(evt) {
@@ -25,4 +26,11 @@ function onFormSubmit(evt) {
   localStorage.removeItem(LOCAL_KEY);
   evt.currentTarget.reset();
   dataForm = {};
+}
+
+function reloadPage() {
+  if (dataForm) {
+    email.value = dataForm.email || '';
+    message.value = dataForm.message || '';
+  }
 }
